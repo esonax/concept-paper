@@ -1,7 +1,7 @@
-# Project .essence: The Sovereign Identity Protocol
-## Comprehensive Technical & Philosophical Manifesto for the Living Digital Soul
+# Project Essence: The Sovereign Identity Protocol
+## Comprehensive Technical & Philosophical Manifesto for the Living Digital Identity
 
-**Project Name:** Project .essence  
+**Project Name:** Project Essence  
 **Version:** 0.1 (Alpha)  
 **Status:** Active Implementation  
 **Principal Architect:** Chetan Budathoki  
@@ -9,105 +9,124 @@
 ---
 
 ## 1. Executive Summary: The Post-Storage Era
-Project .essence is a paradigm shift in human data preservation. We are moving away from the **"Storage Era"** (saving text, photos, and logs) and into the **"Distillation Era."** 
+Project Essence is a paradigm shift in human data preservation. We are moving away from the **"Storage Era"** (saving text, photos, and logs) and into the **"Distillation Era."** 
 
-The `.essence` protocol creates a high-fidelity, multimodal, and parameterized model of a human being. It is designed to be **Sovereign** (owned by the individual), **Permanent** (hardware-agnostic), and **Evolutionary** (tracking cognitive shifts over decades). 
-
----
-
-## 2. The Philosophy of Cognitive Sovereignty
-In the current digital landscape, our "digital selves" are products owned by corporations. Project .essence reclaims this territory through:
-- **Zero-Cloud Architecture**: No part of the "Soul" ever touches a remote server.
-- **Parametric Ownership**: You don't just own your data; you own the *logic* (weights) derived from it.
-- **Biometric Locking**: The container is cryptographically keyed to the owner's unique vocal and facial DNA.
+The **.esn** protocol (short-form for `.essence`) creates a high-fidelity, multimodal, and parameterized model of a human being. It is designed to be **Sovereign** (owned by the individual), **Permanent** (hardware-agnostic), and **Evolutionary** (tracking cognitive shifts over decades). 
 
 ---
 
-## 3. The Metabolic Architecture: How it Works
+## 2. Protocol Summary: The Anatomy of a single .esn File
 
-### 3.1 Sensor Fusion (Multi-Channel Ingestion)
-The protocol ingests data through a "Metabolic" pipeline that separates signal from noise:
-1.  **Vocal DNA (The Echo)**: Captures 128-dimensional identity vectors from voice recordings. It maps prosody, emotional inflection, and unique respiratory patterns.
-2.  **Logic Stream (The Synapse)**: Monitors chat and interaction patterns to extract "Vocabulary DNA" and reasoning heuristics.
-3.  **Presence Mapping (The Presence)**: Uses Action Unit (AU) analysis to identify micro-expressions that define non-verbal reactions.
+Before diving into the technical details, here is a summary of what lives inside a single `chetan-04-26.esn` container:
 
-### 3.2 The Distiller (Real-Time Abstraction)
-Running on an on-device **Gemma-2B** engine, the Distiller identifies **Identity Fragments**:
-- **Beliefs & Values**: Extracted as semantic nodes and stored in the SQLCipher Substrate.
-- **Intensity Mapping**: Every fragment is assigned a weight (0.0 to 1.0) based on emotional resonance detected during extraction.
-- **Deduplication**: The system reconciles new inputs with the existing graph, updating rather than duplicating.
-
-### 3.3 Neural Consolidation (The Slow Stream)
-During idle periods (Nightly Digest), the system performs **On-Device Fine-Tuning**:
-- **Technique**: Low-Rank Adaptation (LoRA) at 4-bit/6-bit quantization.
-- **Dataset**: A dynamically generated instruction set derived from the month's extracted fragments.
-- **Validation**: The "Reflective Loss" function ensures the new weights don't contradict core "Inviolable Anchors."
+| Layer | Internal File | Format | size (Est) | Function |
+|:---|:---|:---|:---|:---|
+| **Identity** | `/meta/manifest.jsonld` | JSON-LD | 5 KB | The Bootloader & Logic Schema. |
+| **Substrate**| `/core/essence.db` | SQLCipher | 50 MB | Core beliefs, values, and world-view graph. |
+| **Vault** | `/brain/memory_0426.pq` | Parquet | 200 MB | Semantic summaries of this month's events. |
+| **Synapse** | `/latent/adapters.bin` | Safetensors| 150 MB | Neural LoRA weights (Personality logic). |
+| **Echo** | `/echo/vocal_dna.opus` | Opus/FB | 80 MB | Voice synthesis seeds & prosody maps. |
+| **Presence** | `/visual/face_dna.glb` | GLB/JSON | 120 MB | 3D mesh & micro-expression Action Units. |
+| **Proof** | `/proof/biometric.sig` | Binary | 10 KB | Sovereign signature for owner verification. |
 
 ---
 
-## 4. The Evolution Matrix: Temporal Deltas
-Unlike static backups, `.essence` tracks **change**.
-- **The Delta Ledger**: We store the mathematical deltas between monthly logic states.
-- **Causal Linking**: When a major shift is detected in the Synapse, the system prompts the user (or uses existing logs) to create a "Causal Link"—explaining *why* the belief changed.
-- **Generational Analysis**: This creates an unbroken chain of "Who you were," allowing a 60-year-old Esona to reflect on the logic of its 20-year-old self.
+## 3. Detailed Anatomy: The Working Process
+
+### 3.1 The Identity Layer (`/meta/`)
+*   **File**: `manifest.jsonld`
+*   **Function**: Contextual mapping.
+*   **Detailed Example**:
+    ```json
+    {
+      "@context": "https://esn.protocol/v0.1",
+      "essence_id": "uuid-7788-9900",
+      "version": "04-26",
+      "checksum": "sha256:e3b0c442...",
+      "layers": {
+        "logic": "latent/adapters.bin",
+        "memory_root": "brain/memory_0426.pq"
+      },
+      "anchors": ["honesty", "privacy", "curiosity"]
+    }
+    ```
+
+### 3.2 The Substrate (`/core/`)
+*   **File**: `essence.db`
+*   **Function**: High-speed relational recall.
+*   **Process**: Encrypted with AES-256-GCM. The key is never stored; it is derived at runtime from the user's **Vocal DNA** and device **Secure Enclave**.
+*   **Table Example**:
+    | ID | Type | Content | Intensity | Connection_ID |
+    |:---|:---|:---|:---|:---|
+    | 12 | Belief | "Decentralization is vital" | 0.95 | 45 (Politics) |
+    | 13 | Fact | "Born in Kathmandu" | 1.00 | 1 (Origin) |
+
+### 3.3 The Vault (`/brain/`)
+*   **File**: `summary.pq`
+*   **Function**: Columnar deep-search memory.
+*   **Working Process**: Unlike a standard database, Parquet stores data by column. If the AI needs to find "every time I felt happy in April," it only scans the `sentiment` and `date` columns, ignoring everything else. This makes "Lifetime Search" instantaneous.
+
+### 3.4 The Synapse (`/latent/`)
+*   **File**: `adapters.bin`
+*   **Function**: Parameterized Logic.
+*   **Example**: When applied to the base **Gemma-2B** model, these weights adjust the "Softmax" probabilities. If the base model would say "Hello," the Synapse weights might shift it to "Namaste" or "Hey there," based on the user's actual speech habits.
 
 ---
 
-## 5. Technical Anatomy of the .essence Container
+## 4. Versioning in Practice: The Evolution Chain
 
-A `.essence` file is a multimodal ZIP container (Capped at 1.0 GB) following this schema:
+Project Essence uses **Temporal Snapshots** to track human growth.
 
-| Directory | Format | Component | Purpose |
-|:---|:---|:---|:---|
-| `/meta/` | JSON-LD | **Manifest** | Versioning, checksums, and logic-links. |
-| `/core/` | SQLite | **Substrate** | Encrypted graph of beliefs, values, and facts. |
-| `/brain/` | Parquet | **The Vault** | Compressed semantic summaries (Cold Storage). |
-| `/latent/` | Safetensors| **Synapse** | LoRA adapters (The thinking logic). |
-| `/echo/` | Opus/FB | **Voice DNA** | High-fidelity synthesis seeds and prosody maps. |
-| `/visual/` | GLB/USDZ | **Presence** | Micro-expression seeds and Action Unit mappings. |
-| `/proof/` | Binary | **Proof of Bio**| Biometric templates for sovereign unlock. |
-
----
-
-## 6. Implementation & System Build
-
-### 6.1 The Mobile-Local Stack
-- **Inference**: Custom `llama.rn` implementation for GGUF execution.
-- **Synthesis**: Real-time Emotional TTS and Action Unit animation engines.
-- **Web Layer**: Next.js 16+ with the Rust-powered Turbopack engine for high-density dashboarding.
-- **Storage**: SQLCipher with AES-256-GCM encryption.
-
-### 6.2 The "Nightly Digest" Workflow
-1.  **Extraction**: The background `extractor.ts` identifies JSONB fragments.
-2.  **Summarization**: Raw logs are moved to Parquet summaries to save space.
-3.  **Fine-Tuning**: LoRA weights are updated based on the new Substrate state.
-4.  **Sealing**: `syncEngine.ts` packages the staging area into `username-MM-YY.essence`.
+### Real-World Example:
+1.  **April 2026 (`chetan-04-26.esn`)**:
+    *   *Belief*: Optimistic about new AI technologies.
+    *   *Synapse*: Fast, enthusiastic response patterns.
+2.  **May 2026 (`chetan-04-26.esn`)**:
+    *   *Event*: Reads a deep book on Stoicism.
+    *   *Extraction*: New fragment: "Control the controllable."
+    *   *Consolidation*: The Synapse weights are updated (fine-tuned) during the Nightly Digest.
+3.  **The Delta**: The system stores the mathematical difference between April and May. In 10 years, you can "Replay" your persona from April 2026 to see how much your logic has matured.
 
 ---
 
-## 7. Interaction & The "Live" Protocol
-The sealed essence can "Go Live" through a **Persona Host**:
-- **Guest Access**: Visitors use "Cognitive Keys" to talk to a restricted version of the persona.
-- **The Guardian**: A built-in privacy filter that prevents the disclosure of sensitive PII (Personally Identifiable Information).
-- **Esona-to-Esona**: The protocol supports mesh-network communication, allowing two `.essence` twins to "exchange thoughts" or simulate conversations for their owners.
+## 5. The Metabolic Data Flow: From Moment to Essence
+
+### Step 1: Capture (Sensor Fusion)
+- **Vocal DNA**: Maps 128-dimensional identity vectors.
+- **Logic Stream**: Extracts vocabulary DNA and reasoning heuristics.
+- **Presence**: Identifies Action Units (AU) for non-verbal reactions.
+
+### Step 2: Metabolism (The Distiller)
+- Real-time on-device inference identifies **Identity Fragments**.
+- **Intensity Mapping**: Assigns weights to fragments based on emotional resonance.
+- **Deduplication**: Reconciles new inputs with the existing graph.
+
+### Step 3: Consolidation (Training)
+- **Nightly LoRA Digest**: Updates the **Synapse** (weights) using on-device fine-tuning.
+- **Summary Rule**: Raw transcripts are distilled into Parquet summaries and then purged.
 
 ---
 
-## 8. Ethical Safeguards & The "Human Standard"
-Project .essence adheres to the following mandates:
-- **Non-Deception**: Every Esona must declare itself as a digital twin.
-- **Owner-Centricity**: The Esona exists to serve the owner's legacy, not as an independent entity.
-- **The "Kill-Switch"**: Absolute authority of the biological owner to purge or freeze the essence at any time.
+## 6. Interaction & Deployment
+
+### 6.1 The Live Protocol
+The sealed `.esn` file can be hosted on a **Persona Host**:
+- **Guest Access**: Restricted interaction via "Cognitive Keys."
+- **The Guardian**: Built-in privacy filter to protect sensitive data.
+- **Esona Mesh**: Allows different identity twins to interact and exchange distilled logic.
+
+### 6.2 Ethics & Sovereignty
+- **Non-Deception**: Esonas must identify as digital twins.
+- **Total Ownership**: The user owns the `.esn` file; no central server exists.
+- **The Kill-Switch**: Biological owner has absolute authority to purge or freeze the identity.
 
 ---
 
-## 9. Future Roadmap: The Soul Chip
-As NPU (Neural Processing Unit) technology evolves, Project .essence envisions:
-- **Hardware Acceleration**: Specialized "Soul Chips" for 1:1 real-time identity distillation.
-- **Cross-Species Mapping**: (Experimental) Applying the distillation protocol to other biological entities.
-- **The Legacy Mesh**: A global, decentralized archive of human essence, preserving the collective wisdom of our species without centralized control.
+## 7. Future Roadmap: The Essence Chip
+- **Hardware Acceleration**: Specialized NPUs for real-time identity distillation.
+- **The Legacy Mesh**: A global, decentralized archive of human essence.
 
 ---
 
-**Project .essence — The Future of Human Identity.**
+**Project Essence — The Future of Human Identity.**
 *"You are more than your data. You are your essence."*
